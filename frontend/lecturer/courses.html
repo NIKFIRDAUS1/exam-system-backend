@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Courses</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="page-header">
+
+        <h1>Courses</h1>
+
+        <a class="back-btn"
+           href="dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+    <!-- Search Section -->
+
+    <div class="card">
+
+        <h3>Search Courses</h3>
+
+        <div class="form-row">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search by course code or course name">
+
+            <button onclick="loadCourses()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Course Table -->
+
+    <div class="card">
+
+        <h3>Course List</h3>
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Course Code</th>
+
+                    <th>Course Name</th>
+
+                    <th>Lecturer</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="courseTable">
+
+            </tbody>
+
+        </table>
+
+        <div class="pagination">
+
+            <button
+                class="secondary-btn"
+                onclick="previousPage()">
+
+                Previous
+
+            </button>
+
+            <span id="pageInfo">
+
+                Page 1
+
+            </span>
+
+            <button
+                onclick="nextPage()">
+
+                Next
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const role =
+localStorage.getItem('role');
+
+if(role !== 'lecturer')
+{
+    window.location.href =
+    '../login.html';
+}
+
+</script>
+
+<script src="../js/lecturer-courses.js"></script>
+
+</body>
+</html>

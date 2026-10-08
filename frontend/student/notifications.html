@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Notifications</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="page-header">
+
+        <h1>My Notifications</h1>
+
+        <a class="back-btn"
+           href="dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card">
+
+        <h3>Search Notifications</h3>
+
+        <div class="form-row">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search Message">
+
+            <button onclick="loadNotifications()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="card">
+
+        <h3>Notification List</h3>
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Message</th>
+                    <th>Created At</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="notificationTable">
+            </tbody>
+
+        </table>
+
+        <div class="pagination">
+
+            <button
+                id="prevBtn"
+                onclick="previousPage()">
+
+                Previous
+
+            </button>
+
+            <span id="pageInfo">
+
+                Page 1
+
+            </span>
+
+            <button
+                id="nextBtn"
+                onclick="nextPage()">
+
+                Next
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/student-notifications.js"></script>
+
+</body>
+</html>

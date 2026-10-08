@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Examinations Management</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="page-header">
+
+        <h1>Results Management</h1>
+
+        <a class="back-btn"
+           href="dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card">
+
+        <h3>Search Results</h3>
+
+        <div class="form-row">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search Student or Course">
+
+            <button onclick="loadResults()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Form -->
+
+    <div class="card">
+
+        <h3>Add / Edit Result</h3>
+
+        <input
+            type="hidden"
+            id="result_id">
+
+        <div class="form-grid">
+
+            <select id="student_id">
+            </select>
+
+            <select id="exam_id">
+            </select>
+
+            <input
+                type="number"
+                id="marks"
+                min="0"
+                max="100"
+                placeholder="Marks">
+
+        </div>
+
+        <div class="button-group">
+
+            <button onclick="saveResult()">
+                Save Result
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="clearForm()">
+                Clear
+            </button>
+
+        </div>
+
+        <p id="message"></p>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="card">
+
+        <h3>Results List</h3>
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="resultTable">
+            </tbody>
+
+        </table>
+
+        <div class="pagination">
+
+            <button
+                id="prevBtn"
+                onclick="previousPage()">
+                Previous
+            </button>
+
+            <span id="pageInfo">
+                Page 1
+            </span>
+
+            <button
+                id="nextBtn"
+                onclick="nextPage()">
+                Next
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/results.js"></script>
+
+</body>
+</html>

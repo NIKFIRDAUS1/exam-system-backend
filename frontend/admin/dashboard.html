@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            EMS
+        </div>
+
+        <h2>Administrator</h2>
+
+        <a href="users.html">
+            Users
+        </a>
+
+        <a href="courses.html">
+            Courses
+        </a>
+
+        <a href="venues.html">
+            Venues
+        </a>
+
+        <a href="examinations.html">
+            Examinations
+        </a>
+
+        <a href="results.html">
+            Results
+        </a>
+
+        <a href="registrations.html">
+            Registrations
+        </a>
+
+        <a href="notifications.html">
+            Notifications
+        </a>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+            Logout
+        </button>
+
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+
+        <h1>
+            Examination Management System
+        </h1>
+
+        <p>
+            Welcome Administrator
+        </p>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3>Users</h3>
+                <p>Manage system users</p>
+            </div>
+
+            <div class="card">
+                <h3>Courses</h3>
+                <p>Manage course records</p>
+            </div>
+
+            <div class="card">
+                <h3>Venues</h3>
+                <p>Manage examination venues</p>
+            </div>
+
+            <div class="card">
+                <h3>Examinations</h3>
+                <p>Manage exam schedules</p>
+            </div>
+
+            <div class="card">
+                <h3>Results</h3>
+                <p>Manage student results</p>
+            </div>
+
+            <div class="card">
+                <h3>Registrations</h3>
+                <p>Manage course registrations</p>
+            </div>
+
+            <div class="card">
+                <h3>Notifications</h3>
+                <p>Manage notifications</p>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+const role =
+localStorage.getItem('role');
+
+if(role !== 'admin')
+{
+    window.location.href =
+    '../login.html';
+}
+
+function logout()
+{
+    localStorage.clear();
+
+    window.location.href =
+    '../login.html';
+}
+
+</script>
+
+</body>
+</html>

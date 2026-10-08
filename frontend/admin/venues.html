@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Venues Management</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="page-header">
+
+        <h1>Venues Management</h1>
+
+        <a class="back-btn"
+           href="dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card">
+
+        <h3>Search Venues</h3>
+
+        <div class="form-row">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search venue">
+
+            <button onclick="loadVenues()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Form -->
+
+    <div class="card">
+
+        <h3>Add / Edit Venue</h3>
+
+        <input
+            type="hidden"
+            id="venue_id">
+
+        <div class="form-grid">
+
+            <input
+                type="text"
+                id="venue_name"
+                placeholder="Venue Name">
+
+            <input
+                type="number"
+                id="capacity"
+                placeholder="Capacity">
+
+        </div>
+
+        <div class="button-group">
+
+            <button onclick="saveVenue()">
+                Save Venue
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="clearForm()">
+                Clear
+            </button>
+
+        </div>
+
+        <p id="message"></p>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="card">
+
+        <h3>Venue List</h3>
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Venue</th>
+                    <th>Capacity</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="venueTable">
+
+            </tbody>
+
+        </table>
+
+        <div class="pagination">
+
+            <button onclick="previousPage()">
+                Previous
+            </button>
+
+            <span id="pageInfo">
+                Page 1
+            </span>
+
+            <button onclick="nextPage()">
+                Next
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/venues.js"></script>
+
+</body>
+</html>

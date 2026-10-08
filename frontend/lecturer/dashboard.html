@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Lecturer Dashboard</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            EMS
+        </div>
+
+        <h2>Lecturer</h2>
+
+        <a href="courses.html">
+            Courses
+        </a>
+
+        <a href="examinations.html">
+            Examinations
+        </a>
+
+        <a href="results.html">
+            Results
+        </a>
+
+        <a href="notifications.html">
+            Notifications
+        </a>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+            Logout
+        </button>
+
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+
+        <h1>
+            Examination Management System
+        </h1>
+
+        <p>
+            Welcome Lecturer
+        </p>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3>Courses</h3>
+                <p>View and manage courses</p>
+            </div>
+
+            <div class="card">
+                <h3>Examinations</h3>
+                <p>Create and manage exam schedules</p>
+            </div>
+
+            <div class="card">
+                <h3>Results</h3>
+                <p>Manage student examination results</p>
+            </div>
+
+            <div class="card">
+                <h3>Notifications</h3>
+                <p>Send notifications to students</p>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+const role =
+localStorage.getItem('role');
+
+if(role !== 'lecturer')
+{
+    window.location.href =
+    '../login.html';
+}
+
+function logout()
+{
+    localStorage.clear();
+
+    window.location.href =
+    '../login.html';
+}
+
+</script>
+
+</body>
+</html>

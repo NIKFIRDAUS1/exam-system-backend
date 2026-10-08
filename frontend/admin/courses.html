@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Courses Management</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="page-header">
+
+        <h1>Courses Management</h1>
+
+        <a class="back-btn"
+           href="dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+    <!-- Search Section -->
+
+    <div class="card">
+
+        <h3>Search Courses</h3>
+
+        <div class="form-row">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search by course code or name">
+
+            <button onclick="loadCourses()">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Add/Edit Form -->
+
+    <div class="card">
+
+        <h3>Add / Edit Course</h3>
+
+        <input
+            type="hidden"
+            id="course_id">
+
+        <div class="form-grid">
+
+            <input
+                type="text"
+                id="course_code"
+                placeholder="Course Code">
+
+            <input
+                type="text"
+                id="course_name"
+                placeholder="Course Name">
+
+            <select id="lecturer_id">
+
+                <option value="">
+                    Select Lecturer
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="button-group">
+
+            <button onclick="saveCourse()">
+                Save Course
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="clearForm()">
+                Clear
+            </button>
+
+        </div>
+
+        <p id="message"></p>
+
+    </div>
+
+    <!-- Course Table -->
+
+    <div class="card">
+
+        <h3>Course List</h3>
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Code</th>
+
+                    <th>Course Name</th>
+
+                    <th>Lecturer</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="courseTable">
+
+            </tbody>
+
+        </table>
+
+        <div class="pagination">
+
+            <button
+                class="secondary-btn"
+                onclick="previousPage()">
+
+                Previous
+
+            </button>
+
+            <span id="pageInfo">
+
+                Page 1
+
+            </span>
+
+            <button
+                onclick="nextPage()">
+
+                Next
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/courses.js"></script>
+
+</body>
+</html>

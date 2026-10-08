@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            EMS
+        </div>
+
+        <h2>Student</h2>
+
+        <a href="examinations.html">
+            My Examinations
+        </a>
+
+        <a href="results.html">
+            My Results
+        </a>
+
+        <a href="notifications.html">
+            My Notifications
+        </a>
+
+        <a href="result-slip.html">
+             Result Slip (QR)
+        </a>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </aside>
+
+    <!-- Content -->
+
+    <main class="content">
+
+        <h1>
+            Examination Management System
+        </h1>
+
+        <p>
+            Welcome Student
+        </p>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+
+                <h3>
+                    My Examinations
+                </h3>
+
+                <p>
+                    View examination schedules
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    My Results
+                </h3>
+
+                <p>
+                    View examination results
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>
+                    My Notifications
+                </h3>
+
+                <p>
+                    View notifications
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+const role =
+localStorage.getItem('role');
+
+if(role !== 'student')
+{
+    localStorage.clear();
+
+    window.location.href =
+    '../login.html';
+}
+
+function logout()
+{
+    localStorage.clear();
+
+    window.location.href =
+    '../login.html';
+}
+
+</script>
+
+</body>
+</html>

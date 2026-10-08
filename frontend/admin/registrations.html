@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Registrations Management</title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="page-header">
+
+        <h1>Registrations Management</h1>
+
+        <a class="back-btn"
+           href="dashboard.html">
+
+            Dashboard
+
+        </a>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="card">
+
+        <h3>Search Registrations</h3>
+
+        <div class="form-row">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search student or course">
+
+            <button onclick="loadRegistrations()">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Form -->
+
+    <div class="card">
+
+        <h3>Add / Edit Registration</h3>
+
+        <input
+            type="hidden"
+            id="registration_id">
+
+        <div class="form-grid">
+
+            <select id="student_id">
+
+                <option value="">
+                    Select Student
+                </option>
+
+            </select>
+
+            <select id="course_id">
+
+                <option value="">
+                    Select Course
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="button-group">
+
+            <button onclick="saveRegistration()">
+
+                Save Registration
+
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="clearForm()">
+
+                Clear
+
+            </button>
+
+        </div>
+
+        <p id="message"></p>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="card">
+
+        <h3>Registration List</h3>
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Student</th>
+
+                    <th>Course</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="registrationTable">
+
+            </tbody>
+
+        </table>
+
+        <div class="pagination">
+
+            <button
+                id="prevBtn"
+                onclick="previousPage()">
+
+                Previous
+
+            </button>
+
+            <span id="pageInfo">
+
+                Page 1
+
+            </span>
+
+            <button
+                id="nextBtn"
+                onclick="nextPage()">
+
+                Next
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/registrations.js"></script>
+
+</body>
+</html>
