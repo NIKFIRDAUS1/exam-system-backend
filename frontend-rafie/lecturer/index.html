@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Portal - Examination Management System</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="institutional-banner">
+    <div class="institutional-brand">
+      <div class="crest-logo">EMS</div>
+      <div class="brand-title-group">
+        <h1>Examination Management System</h1>
+        <p>Faculty & Lecturer Academic Portal</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="user-profile-badge">
+        <span id="header-user-name" class="user-meta-name">Faculty Lecturer</span>
+        <span id="header-user-role" class="user-meta-role lecturer">LECTURER</span>
+      </div>
+      <button id="btn-logout" class="btn-signout">Sign Out</button>
+    </div>
+  </header>
+  <div class="portal-container">
+    <aside class="portal-sidebar">
+      <div class="portal-sidebar-title">Faculty Services</div>
+      <ul class="sidebar-menu">
+        <li><button class="active" data-section="courses">Teaching Courses</button></li>
+        <li><button data-section="exams">Exam Timetable</button></li>
+        <li><button data-section="grading">Gradebook & Marks</button></li>
+        <li><button data-section="announcements">Course Announcements</button></li>
+      </ul>
+      <div class="sidebar-footer-info">
+        Faculty Portal &bull; Session 2026
+      </div>
+    </aside>
+    <main class="portal-main">
+      <section id="section-courses" class="content-section">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Teaching Course Assignments</h2>
+            <p>Courses assigned to your faculty profile for this academic session.</p>
+          </div>
+          <div class="filter-button-group">
+            <button type="button" class="filter-btn-item active" id="chip-my-courses" onclick="toggleCourseScope('my')">My Assigned Courses</button>
+            <button type="button" class="filter-btn-item" id="chip-all-courses" onclick="toggleCourseScope('all')">All Faculty Courses</button>
+          </div>
+        </div>
+        <div class="academic-panel">
+          <div class="academic-toolbar">
+            <div class="toolbar-controls-left">
+              <input type="text" id="course-search" class="input-search-field" placeholder="Search by course code or title..." oninput="filterCourses()">
+            </div>
+            <div class="records-counter" id="course-count">0 records</div>
+          </div>
+          <div class="academic-table-wrap">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th style="width: 140px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th style="width: 220px;">Faculty Instructor</th>
+                </tr>
+              </thead>
+              <tbody id="courses-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section id="section-exams" class="content-section" style="display: none;">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Examination Timetable & Venues</h2>
+            <p>Approved dates, session times, and allocated venues for course examinations.</p>
+          </div>
+          <button class="btn-academic primary" onclick="openScheduleExamModal()">+ Schedule Exam</button>
+        </div>
+        <div class="academic-panel">
+          <div class="academic-toolbar">
+            <div class="toolbar-controls-left">
+              <input type="text" id="exam-search" class="input-search-field" placeholder="Search course code or venue..." oninput="filterExams()">
+              <select id="exam-venue-filter" class="select-filter-field" onchange="filterExams()">
+                <option value="">All Venues</option>
+              </select>
+            </div>
+            <div class="records-counter" id="exam-count">0 records</div>
+          </div>
+          <div class="academic-table-wrap">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th style="width: 140px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th>Examination Venue</th>
+                  <th style="width: 130px;">Date</th>
+                  <th style="width: 120px;">Session Time</th>
+                </tr>
+              </thead>
+              <tbody id="exams-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section id="section-grading" class="content-section" style="display: none;">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Student Examination Gradebook</h2>
+            <p>Enter, update, and manage official exam scores and calculated letter grades.</p>
+          </div>
+          <button class="btn-academic primary" onclick="openAddGradeModal()">+ Record Student Mark</button>
+        </div>
+        <div class="academic-panel">
+          <div class="academic-toolbar">
+            <div class="toolbar-controls-left">
+              <input type="text" id="grade-search" class="input-search-field" placeholder="Search student name or course..." oninput="filterGrades()">
+              <select id="grade-exam-filter" class="select-filter-field" onchange="filterGrades()">
+                <option value="">All Examination Sessions</option>
+              </select>
+              <div class="filter-button-group">
+                <button type="button" class="filter-btn-item active" onclick="setGradeFilter('', this)">All</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('A', this)">Grade A</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('B', this)">Grade B</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('C', this)">Grade C</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('D', this)">Grade D</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('F', this)">Grade F</button>
+              </div>
+            </div>
+            <div class="records-counter" id="grade-count">0 records</div>
+          </div>
+          <div class="academic-table-wrap">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th style="width: 130px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th style="width: 110px;">Marks / 100</th>
+                  <th style="width: 80px;">Grade</th>
+                  <th style="text-align: right; width: 100px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="grades-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section id="section-announcements" class="content-section" style="display: none;">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Course Announcements</h2>
+            <p>Dispatch official notifications regarding examination venues and instructions to students.</p>
+          </div>
+        </div>
+        <div class="academic-panel" style="max-width: 650px;">
+          <div class="panel-topbar">
+            <span class="panel-title-text">Compose Notification</span>
+          </div>
+          <div style="padding: 20px;">
+            <form id="form-announcement" onsubmit="handleSendAnnouncement(event)">
+              <div class="academic-form-group">
+                <label class="academic-form-label" for="ann-student">Recipient Student</label>
+                <select id="ann-student" class="academic-form-input" required>
+                  <option value="">Select student...</option>
+                </select>
+              </div>
+              <div class="academic-form-group">
+                <label class="academic-form-label" for="ann-message">Announcement Message</label>
+                <textarea id="ann-message" class="academic-form-input" rows="4" required placeholder="Type announcement message to dispatch..."></textarea>
+              </div>
+              <button type="submit" class="btn-academic primary">Send Announcement</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="modal-grade" class="academic-modal-overlay">
+    <div class="academic-modal-card">
+      <div class="academic-modal-header">
+        <h3 id="modal-grade-title">Record Student Mark</h3>
+        <button class="academic-modal-close" onclick="closeModal('modal-grade')">&times;</button>
+      </div>
+      <form id="form-grade" onsubmit="handleGradeSubmit(event)">
+        <div class="academic-modal-body">
+          <input type="hidden" id="grade-result-id">
+          <div class="academic-form-group" id="grade-student-group">
+            <label class="academic-form-label" for="modal-select-student">Student</label>
+            <select id="modal-select-student" class="academic-form-input" required>
+              <option value="">Select student...</option>
+            </select>
+          </div>
+          <div class="academic-form-group" id="grade-exam-group">
+            <label class="academic-form-label" for="modal-select-exam">Examination Session</label>
+            <select id="modal-select-exam" class="academic-form-input" required>
+              <option value="">Select exam...</option>
+            </select>
+          </div>
+          <div class="academic-form-group">
+            <label class="academic-form-label" for="modal-input-marks">Marks (0.00 - 100.00)</label>
+            <input type="number" id="modal-input-marks" class="academic-form-input" required min="0" max="100" step="any" placeholder="e.g. 78.5">
+          </div>
+        </div>
+        <div class="academic-modal-footer">
+          <button type="button" class="btn-academic secondary" onclick="closeModal('modal-grade')">Cancel</button>
+          <button type="submit" class="btn-academic primary">Save Mark & Grade</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="modal-exam" class="academic-modal-overlay">
+    <div class="academic-modal-card">
+      <div class="academic-modal-header">
+        <h3>Schedule Examination Session</h3>
+        <button class="academic-modal-close" onclick="closeModal('modal-exam')">&times;</button>
+      </div>
+      <form id="form-exam" onsubmit="handleScheduleExamSubmit(event)">
+        <div class="academic-modal-body">
+          <div class="academic-form-group">
+            <label class="academic-form-label" for="lec-exam-course">Course</label>
+            <select id="lec-exam-course" class="academic-form-input" required>
+              <option value="">Select course...</option>
+            </select>
+          </div>
+          <div class="academic-form-group">
+            <label class="academic-form-label" for="lec-exam-venue">Venue</label>
+            <select id="lec-exam-venue" class="academic-form-input" required>
+              <option value="">Select venue...</option>
+            </select>
+          </div>
+          <div class="academic-form-group">
+            <label class="academic-form-label" for="lec-exam-date">Date</label>
+            <input type="date" id="lec-exam-date" class="academic-form-input" required>
+          </div>
+          <div class="academic-form-group">
+            <label class="academic-form-label" for="lec-exam-time">Time</label>
+            <input type="time" id="lec-exam-time" class="academic-form-input" required>
+          </div>
+        </div>
+        <div class="academic-modal-footer">
+          <button type="button" class="btn-academic secondary" onclick="closeModal('modal-exam')">Cancel</button>
+          <button type="submit" class="btn-academic primary">Save Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="toast-container"></div>
+  <script src="../js/api.js"></script>
+  <script src="../js/lecturer.js"></script>
+</body>
+</html>

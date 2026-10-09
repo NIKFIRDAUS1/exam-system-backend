@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Academic Portal - Examination Management System</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="institutional-banner">
+    <div class="institutional-brand">
+      <div class="crest-logo">EMS</div>
+      <div class="brand-title-group">
+        <h1>Examination Management System</h1>
+        <p>Student Academic & Examination Portal</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="user-profile-badge">
+        <span id="header-user-name" class="user-meta-name">Student</span>
+        <span id="header-user-role" class="user-meta-role student">STUDENT</span>
+      </div>
+      <button id="btn-logout" class="btn-signout">Sign Out</button>
+    </div>
+  </header>
+  <div class="portal-container">
+    <aside class="portal-sidebar">
+      <div class="portal-sidebar-title">Student Records</div>
+      <ul class="sidebar-menu">
+        <li><button class="active" data-section="timetable">Exam Timetable</button></li>
+        <li><button data-section="results">Official Results Slip</button></li>
+        <li><button data-section="courses">Enrolled Courses</button></li>
+        <li><button data-section="notifications">Notice Inbox</button></li>
+      </ul>
+      <div class="sidebar-footer-info">
+        Student Portal &bull; Session 2026
+      </div>
+    </aside>
+    <main class="portal-main">
+      <section id="section-timetable" class="content-section">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Examination Timetable</h2>
+            <p>Official schedule of upcoming and completed examination sessions.</p>
+          </div>
+        </div>
+        <div class="academic-stats-row">
+          <div class="academic-stat-box green">
+            <div class="stat-label-text">Enrolled Subjects</div>
+            <div class="stat-value-num" id="stat-my-courses">-</div>
+          </div>
+          <div class="academic-stat-box amber">
+            <div class="stat-label-text">Scheduled Exams</div>
+            <div class="stat-value-num" id="stat-my-exams">-</div>
+          </div>
+          <div class="academic-stat-box blue">
+            <div class="stat-label-text">Average Score</div>
+            <div class="stat-value-num" id="stat-avg-marks">-</div>
+          </div>
+        </div>
+        <div class="academic-panel">
+          <div class="academic-toolbar">
+            <div class="toolbar-controls-left">
+              <input type="text" id="timetable-search" class="input-search-field" placeholder="Search course code or venue..." oninput="filterTimetable()">
+              <div class="filter-button-group">
+                <button type="button" class="filter-btn-item active" id="chip-time-all" onclick="setTimeFilter('all')">All Sessions</button>
+                <button type="button" class="filter-btn-item" id="chip-time-upcoming" onclick="setTimeFilter('upcoming')">Upcoming Only</button>
+                <button type="button" class="filter-btn-item" id="chip-time-past" onclick="setTimeFilter('past')">Concluded Sessions</button>
+              </div>
+            </div>
+            <div class="records-counter" id="timetable-count">0 records</div>
+          </div>
+          <div class="academic-table-wrap">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th style="width: 140px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th>Examination Venue</th>
+                  <th style="width: 130px;">Date</th>
+                  <th style="width: 120px;">Session Time</th>
+                  <th style="width: 110px;">Status</th>
+                </tr>
+              </thead>
+              <tbody id="timetable-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section id="section-results" class="content-section" style="display: none;">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Official Examination Results Slip</h2>
+            <p>Verified transcript statement of published examination scores and academic standings.</p>
+          </div>
+          <button class="btn-academic secondary" onclick="window.print()">Print Official Slip</button>
+        </div>
+        <div class="academic-panel">
+          <div class="panel-topbar">
+            <div>
+              <span class="panel-title-text">Student Examination Slip</span>
+              <div style="font-size: 12px; color: var(--neutral-600); margin-top: 3px;">
+                Candidate Name: <strong id="slip-student-name">Loading...</strong> &bull; Academic Status: <strong>Eligible</strong>
+              </div>
+            </div>
+          </div>
+          <div class="academic-toolbar">
+            <div class="toolbar-controls-left">
+              <input type="text" id="result-search" class="input-search-field" placeholder="Search course title..." oninput="filterResults()">
+              <div class="filter-button-group">
+                <button type="button" class="filter-btn-item active" onclick="setGradeFilter('', this)">All Grades</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('A', this)">Grade A</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('B', this)">Grade B</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('C', this)">Grade C</button>
+                <button type="button" class="filter-btn-item" onclick="setGradeFilter('F', this)">Grade F</button>
+              </div>
+            </div>
+            <div class="records-counter" id="results-count">0 records</div>
+          </div>
+          <div class="academic-table-wrap">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th style="width: 140px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th style="width: 120px;">Marks / 100</th>
+                  <th style="width: 90px;">Official Grade</th>
+                  <th style="width: 110px;">Academic Standing</th>
+                </tr>
+              </thead>
+              <tbody id="results-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section id="section-courses" class="content-section" style="display: none;">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Registered Course Enrollments</h2>
+            <p>Active subject enrollments approved for the current examination cycle.</p>
+          </div>
+        </div>
+        <div class="academic-panel">
+          <div class="academic-toolbar">
+            <div class="toolbar-controls-left">
+              <input type="text" id="course-search" class="input-search-field" placeholder="Search enrolled subject..." oninput="filterCourses()">
+            </div>
+            <div class="records-counter" id="courses-count">0 records</div>
+          </div>
+          <div class="academic-table-wrap">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th style="width: 100px;">Reg ID</th>
+                  <th style="width: 140px;">Course Code</th>
+                  <th>Course Title</th>
+                  <th style="width: 160px;">Enrollment Status</th>
+                </tr>
+              </thead>
+              <tbody id="courses-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section id="section-notifications" class="content-section" style="display: none;">
+        <div class="page-header-bar">
+          <div class="page-header-title">
+            <h2>Official Academic Notices & Alerts</h2>
+            <p>Institutional announcements dispatched by the examination registry.</p>
+          </div>
+        </div>
+        <div class="academic-panel">
+          <div class="academic-toolbar">
+            <div class="toolbar-controls-left">
+              <input type="text" id="notif-search" class="input-search-field" placeholder="Search message text..." oninput="filterNotifications()">
+            </div>
+            <div class="records-counter" id="notif-count">0 records</div>
+          </div>
+          <div class="academic-table-wrap">
+            <table class="academic-table">
+              <thead>
+                <tr>
+                  <th>Announcement Content</th>
+                  <th style="width: 180px;">Dispatched Date</th>
+                </tr>
+              </thead>
+              <tbody id="notifications-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="toast-container"></div>
+  <script src="../js/api.js"></script>
+  <script src="../js/student.js"></script>
+</body>
+</html>
